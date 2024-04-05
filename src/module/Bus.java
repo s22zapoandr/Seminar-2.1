@@ -1,10 +1,6 @@
 package module;
 
-public class Buss extends Vehicle{
-	public Buss(String title, String vehicleCode, float price, Fuel etype, int quantity) {
-		super(title, vehicleCode, price, etype, quantity);
-		// TODO Auto-generated constructor stub
-	}
+public class Bus extends Vehicle{
 
 	private int numberOfSeats;
 	private boolean hasBaggageDivision;
@@ -27,11 +23,19 @@ public class Buss extends Vehicle{
 		this.hasBaggageDivision = hasBaggageDivision;
 	}
 	 
-	public Buss() {
+	public Bus() {
 		super();
 		setNumberOfSeats(10);
 		setHasBaggageDivision(false);
 	}
+	
+	public Bus(String title, float price, Fuel etype, int quantity,int numberOfSeats, boolean hasBaggageDivision) {
+		super(title, price, etype, quantity);
+		setNumberOfSeats(numberOfSeats);
+		setHasBaggageDivision(hasBaggageDivision);
+		// TODO Auto-generated constructor stub
+	}
+
 	 public String toString(){
 		 
 		 return super.toString() + " has " +  numberOfSeats + " seats, has baggage division - " + hasBaggageDivision;

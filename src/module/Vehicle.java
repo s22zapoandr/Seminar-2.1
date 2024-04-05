@@ -33,7 +33,7 @@ public class Vehicle {
 		return vehicleCode;
 	}
 
-	public void setVehicleCode(String vehicleCode) {
+	public void setVehicleCode() {
 		this.vehicleCode = ID+"_"+title;
 	}
 
@@ -84,12 +84,13 @@ public class Vehicle {
 		setPrice(99999999);
 		setQuantity(1939);
 		seteType(Fuel.gas);
+		setVehicleCode();
 	}
 	
-	public Vehicle(String title, String vehicleCode, float price, Fuel etype, int quantity){
+	public Vehicle(String title,  float price, Fuel etype, int quantity){
 		setID();
 		setTitle(title);
-		setVehicleCode(vehicleCode);
+		setVehicleCode();
 		setPrice(price);
 		seteType(etype);
 		setQuantity(quantity);
