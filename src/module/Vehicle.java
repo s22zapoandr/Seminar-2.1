@@ -1,103 +1,98 @@
 package module;
 
-public class Vehicle {
-	private int ID;
+public abstract class Vehicle {
+	//1. variables
+	private int id;
 	private String title;
-	private String vehicleCode;
+	private String code;
 	private float price;
-	private Fuel eType;
 	private int quantity;
+	private EnergyType energyType;
 	
-	static int counter = 0;
-
-	public int getID() {
-		return ID;
+	private static int counter = 0;
+	//2. get and set
+	public int getId() {
+		return id;
 	}
-
-	public void setID() {
-		ID = counter;
+	public void setId() {
+		this.id = counter;
 		counter++;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
-		if(title != null && title.matches("[A-Za-z 0-9]{4,40}"))
+		if(title != null && title.matches("[A-Za-z ]{3,20}"))
 			this.title = title;
 		else
-			this.title = "Undefined";
+			this.title = "-------";
 	}
-	public String getVehicleCode() {
-		return vehicleCode;
+	public String getCode() {
+		return code;
 	}
-
-	public void setVehicleCode() {
-		this.vehicleCode = ID+"_"+title;
+	public void setCode() {
+		this.code = id + "_" + title;
 	}
-
 	public float getPrice() {
 		return price;
 	}
-
 	public void setPrice(float price) {
-		if(price <= 9999 && price > 0 ) {
+		if(price > 0 && price < 1000000)
 			this.price = price;
-		}
-		else {
-			this.price = 10000;
-		}
+		else
+			this.price = 1000; 
 	}
-	
 	public int getQuantity() {
 		return quantity;
 	}
-
 	public void setQuantity(int quantity) {
-		if(quantity > 0 && quantity <= 9999) {
+		if(quantity > 0 && quantity < 1000)
 			this.quantity = quantity;
-		}
-		else {
-			this.quantity = 1;
-		}
+		else
+			this.quantity  =1;
 	}
-
-	public Fuel geteType() {
-		return eType;
+	public EnergyType getEnergyType() {
+		return energyType;
 	}
-
-	public void seteType(Fuel eType) {
-		if(eType != null ) {
-			this.eType = eType;
-		}
-		else {
-			this.eType = Fuel.not_specified;
-		}
+	public void setEnergyType(EnergyType energyType) {
+		if(energyType != null)
+			this.energyType = energyType;
+		else
+			this.energyType = EnergyType.not_specified;
 	}
 	
-	//Constructors
+
+	
+	
+	
+	
+	//3. constructors
 	
 	public Vehicle() {
-		setID();
-		setTitle("Panzerkampfwagen 6");
-		setPrice(99999999);
-		setQuantity(1939);
-		seteType(Fuel.gas);
-		setVehicleCode();
+		setId();
+		setTitle("Default vehicle");
+		setCode();
+		setQuantity(1);
+		setPrice(9999.99f);
+		setEnergyType(EnergyType.not_specified);
 	}
 	
-	public Vehicle(String title,  float price, Fuel etype, int quantity){
-		setID();
+	public Vehicle(String title, float price, int quantity, EnergyType type)
+	{
+		setId();
 		setTitle(title);
-		setVehicleCode();
-		setPrice(price);
-		seteType(etype);
+		setCode();
 		setQuantity(quantity);
-	}		
+		setPrice(price);
+		setEnergyType(type);
+		
+		
+	}
 	
-	public String toString() {
-		return ID + ":" + title +  " (" + vehicleCode + ") is " + price  +  " reichsmarks for each ("  + quantity + ")"      ;    
+	//4. toString
+	public String toString()
+	{
+		return id + ": " + title + "(" + code + "), " + price + " eur [" + quantity + "], " + energyType;
 	}
 	
 }
